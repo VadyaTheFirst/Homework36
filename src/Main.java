@@ -20,6 +20,10 @@ public class Main {
         Cars.Truck truck = new Truck("MAC","ff",2010,"Germany","blue",120,1.2f,"К40");
         System.out.println(truck.toString());
 
+        Car[] cars={car,bus,truck};
+        allDiagnostics(cars);
+
+
         CarDriver driverA=new CarDriver("Шумахер",true,5);
 
     CarLicense license=new CarLicense(driverA,null);
@@ -30,8 +34,6 @@ public class Main {
 
 
 
-        Car[] cars={car,bus,truck};
-        allDiagnostics(cars);
 
 
 
@@ -39,9 +41,10 @@ public class Main {
 
     public static void  allDiagnostics(Car... cars){
         for (Car vehicle: cars) {
-            try { //непроверяемое исключение
+            try { //
                 vehicle.checkDiagnostics();
-            } catch (UnsupportedOperationException e) {
+            } catch (UnsupportedOperationException e) {//Поймано исключение- автобусы не проходят диагностику.
+                // Если автобусы не проходят диагностику, то мы выдаем ошибку и идем дальше
                 System.out.println(e.getMessage());
             }
 

@@ -11,6 +11,11 @@ public class CarLicense < T extends Car > {
 
     public CarLicense(CarDriver driver, String licenceType) throws WrongInformationException {
         this.driver = driver;
+        //try {
+          //  checkLicense(licenceType);
+        //} catch (WrongInformationException e) {
+          //  System.out.println(e.getMessage());
+       // }
         checkLicense(licenceType);
     }
 
@@ -24,10 +29,20 @@ public class CarLicense < T extends Car > {
 
     public void checkLicense(String licenceType) throws WrongInformationException {
 
-            if (licenceType != null) {
+            if ((licenceType != null) ) {
                 this.licenceType = licenceType;
-            } else {
-            throw new WrongInformationException("Налл!!");
+            }
+            else {
+            throw new WrongInformationException("Налл!! : ", driver);//Если у водителя не указана категория прав,
+                // то приложение ломается (не работает дальше)
         }
+    }
+
+    @Override
+    public String toString() {
+        return "CarLicense{" +
+                "driver=" + driver +
+                ", licenceType='" + licenceType + '\'' +
+                '}';
     }
 }
